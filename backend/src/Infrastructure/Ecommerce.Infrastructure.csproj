@@ -21,12 +21,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Core\Ecommerce.Application\Ecommerce.Application.csproj" />
-
-
-
   </ItemGroup>
-
-
-
 
 </Project>
