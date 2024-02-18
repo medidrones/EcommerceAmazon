@@ -35,7 +35,7 @@ public class EcommerceDbContextData
                         "https://firebasestorage.googleapis.com/v0/b/edificacion-app.appspot.com/o/vaxidrez.jpg?alt=media&token=14a28860-d149-461e-9c25-9774d7ac1b24\n"
                 };
 
-                await usuarioManager.CreateAsync(usuarioAdmin, "P@ssw0rdMedicode123$");
+                await usuarioManager.CreateAsync(usuarioAdmin, "PasswordMedicode123$");
                 await usuarioManager.AddToRoleAsync(usuarioAdmin, Role.ADMIN);
 
                 var usuario = new Usuario
@@ -49,7 +49,7 @@ public class EcommerceDbContextData
                         "https://firebasestorage.googleapis.com/v0/b/edificacion-app.appspot.com/o/vaxidrez.jpg?alt=media&token=14a28860-d149-461e-9c25-9774d7ac1b24\\n\""
                 };
 
-                await usuarioManager.CreateAsync(usuario, "P@ssw0rdJuanPerez123$");
+                await usuarioManager.CreateAsync(usuario, "PasswordJuanPerez123$");
                 await usuarioManager.AddToRoleAsync(usuario, Role.USER);
             }
 

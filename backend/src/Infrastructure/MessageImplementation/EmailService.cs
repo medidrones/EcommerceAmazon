@@ -22,14 +22,15 @@ public class EmailService : IEmailService
     {
         try
         {
-            var cliente = new SendGridClient(_emailSettings.Key);
+            var client = new SendGridClient(_emailSettings.Key);
             var from = new EmailAddress(_emailSettings.Email);
             var subject = email.Subject;
             var to = new EmailAddress(email.To, email.To);
+
             var plainTextContent = email.Body;
             var htmlContent = $"{email.Body} {_emailSettings.BaseUrlClient}/password/reset/{token}";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
-            var response = await cliente.SendEmailAsync(msg);
+            var response = await client.SendEmailAsync(msg);
             
             return response.IsSuccessStatusCode;
         }

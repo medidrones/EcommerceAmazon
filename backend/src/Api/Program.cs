@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json.Serialization;
+using Ecommerce.Api.Middlewares;
 using Ecommerce.Application;
 using Ecommerce.Application.Contracts.Infrastructure;
 using Ecommerce.Application.Features.Products.Queries.GetProductList;
@@ -49,16 +50,16 @@ builder.Services.TryAddSingleton<ISystemClock, SystemClock>();
 
 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]!));
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-    .AddJwtBearer(opt =>
+.AddJwtBearer(opt =>
+{
+    opt.TokenValidationParameters = new TokenValidationParameters
     {
-        opt.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateIssuerSigningKey = true,
-            IssuerSigningKey = key,
-            ValidateAudience = false,
-            ValidateIssuer = false
-        };
-    });
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = key,
+        ValidateAudience = false,
+        ValidateIssuer = false
+    };
+});
 
 builder.Services.AddCors(options =>
 {
@@ -81,6 +82,7 @@ if (app.Environment.IsDevelopment())
 
 //app.UseHttpsRedirection();
 
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors("CorsPolicy");
@@ -89,15 +91,15 @@ app.MapControllers();
 
 using (var scope = app.Services.CreateScope())
 {
-    var services = scope.ServiceProvider;
-    var loggerFactory = services.GetRequiredService<ILoggerFactory>();
-    
+    var service = scope.ServiceProvider;
+    var loggerFactory = service.GetRequiredService<ILoggerFactory>();
+
     try
     {
-        var context = services.GetRequiredService<EcommerceDbContext>();
-        var usuarioManager = services.GetRequiredService<UserManager<Usuario>>();
-        var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-        
+        var context = service.GetRequiredService<EcommerceDbContext>();
+        var usuarioManager = service.GetRequiredService<UserManager<Usuario>>();
+        var roleManager = service.GetRequiredService<RoleManager<IdentityRole>>();
+
         await context.Database.MigrateAsync();
         await EcommerceDbContextData.LoadDataAsync(context, usuarioManager, roleManager, loggerFactory);
     }

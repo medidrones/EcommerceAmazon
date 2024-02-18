@@ -38,6 +38,7 @@ public class AuthService : IAuthService
         
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key!));
         var credentiales = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
         var tokenDescription = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
