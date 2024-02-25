@@ -95,7 +95,7 @@ const ProductDetail = () => {
         <hr />
 
         <h4 className="mt-2">Description:</h4>
-        <p>{product.descripction}</p>
+        <p>{product.descripcion}</p>
         <hr />
         <p id="product_seller mb-3">
           Vendedor: <strong> {product.vendedor} </strong>
