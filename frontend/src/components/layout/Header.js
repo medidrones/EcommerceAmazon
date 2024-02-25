@@ -1,6 +1,5 @@
-import React from 'react'
-import { Fragment } from 'react'
-import '../../App.css'
+import React, { Fragment } from "react";
+import "../../App.css";
 
 const Header = () => {
   return (
@@ -43,6 +42,6 @@ const Header = () => {
       </nav>
     </Fragment>
   );
-}
+};
 
-export default Header
+export default Header;
