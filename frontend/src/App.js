@@ -18,6 +18,11 @@ import NewPassword from "./components/security/NewPassword";
 import UpdatePassword from "./components/security/UpdatePassword";
 import { getShoppingCart } from "./actions/cartAction";
 import Cart from "./components/cart/Cart";
+import { getCountries } from "./actions/countryAction";
+import Shipping from "./components/cart/Shipping";
+import ConfirmOrder from "./components/cart/ConfirmOrder";
+import Payment from "./components/cart/Payment";
+import OrderSuccess from "./components/cart/OrderSuccess";
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +32,7 @@ function App() {
   useEffect(() => {
     dispatch(getCategories({}));
     dispatch(getShoppingCart({}));
+    dispatch(getCountries({}));
 
     if (token) {
       dispatch(loadUser({}));
@@ -58,6 +64,22 @@ function App() {
 
             <Route exact path="/me/update" element={<ProtectedRoute />}>
               <Route path="/me/update" element={<UpdateProfile />} />
+            </Route>
+
+            <Route exact path="/shipping" element={<ProtectedRoute />}>
+              <Route path="/shipping" element={<Shipping />} />
+            </Route>
+
+            <Route exact path="/order/confirm" element={<ProtectedRoute />}>
+              <Route path="/order/confirm" element={<ConfirmOrder />} />
+            </Route>
+
+            <Route exact path="/payment" element={<ProtectedRoute />}>
+              <Route path="/payment" element={<Payment />} />
+            </Route>
+
+            <Route exact path="/success" element={<ProtectedRoute />}>
+              <Route path="/success" element={<OrderSuccess />} />
             </Route>
           </Routes>
         </div>
