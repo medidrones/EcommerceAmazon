@@ -16,6 +16,8 @@ import UpdateProfile from "./components/security/UpdateProfile";
 import ForgotPassword from "./components/security/ForgotPassword";
 import NewPassword from "./components/security/NewPassword";
 import UpdatePassword from "./components/security/UpdatePassword";
+import { getShoppingCart } from "./actions/cartAction";
+import Cart from "./components/cart/Cart";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +26,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getCategories({}));
+    dispatch(getShoppingCart({}));
 
     if (token) {
       dispatch(loadUser({}));
@@ -41,6 +44,7 @@ function App() {
             <Route path="/product/:id" element={<ProductDetail />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/cart" element={<Cart />} />
             <Route path="/password/forgot" element={<ForgotPassword />} />
             <Route path="/password/reset/:token" element={<NewPassword />} />
 
