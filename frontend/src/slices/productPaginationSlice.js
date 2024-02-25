@@ -32,7 +32,7 @@ export const productPaginationSlice = createSlice({
 
     updatePrecio: (state, action) => {
       state.precioMax = action.payload.precio[1];
-      state.precionMin = action.payload.precio[0];
+      state.precioMin = action.payload.precio[0];
     },
 
     resetPagination: (state, action) => {
