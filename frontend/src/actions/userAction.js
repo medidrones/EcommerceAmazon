@@ -44,8 +44,10 @@ export const register = createAsyncThunk(
         requestConfig
       );
 
-      localStorage.setitem("token", data.token);
+      localStorage.setItem("token", data.token);
+
       await delayedTimeout(1000);
+
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data.message);
@@ -63,16 +65,17 @@ export const update = createAsyncThunk(
         },
       };
 
-      const { data } = await axios.post(
+      const { data } = await axios.put(
         `/api/v1/usuario/update`,
         params,
         requestConfig
       );
 
-      localStorage.setitem("token", data.token);
+      localStorage.setItem("token", data.token);
       await delayedTimeout(1000);
       return data;
     } catch (err) {
+      console.log("error", err);
       return rejectWithValue(err.response.data.message);
     }
   }
@@ -102,7 +105,7 @@ export const updatePassword = createAsyncThunk(
         },
       };
 
-      const { data } = await axios.put(
+      const { data } = await axios.post(
         `/api/v1/usuario/updatepassword`,
         params,
         requestConfig
