@@ -1,13 +1,13 @@
-﻿using Ecommerce.Application.Features.ShoppingCarts.Commands.DeleteShoppingCartItem;
+using System.Net;
+using Ecommerce.Application.Features.ShoppingCarts.Commands.DeleteShoppingCartItem;
 using Ecommerce.Application.Features.ShoppingCarts.Commands.UpdateShoppingCart;
 using Ecommerce.Application.Features.ShoppingCarts.Queries.GetShoppingCartById;
 using Ecommerce.Application.Features.ShoppingCarts.Vms;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
-namespace Ecommerce.Api.Controllers;
+namespace Ecommerce.Api;
 
 [ApiController]
 [Route("api/v1/[controller]")]
@@ -29,6 +29,7 @@ public class ShoppingCartController : ControllerBase
         var query = new GetShoppingCartByIdQuery(shoppingCartId);
 
         return await _mediator.Send(query);
+
     }
 
     [AllowAnonymous]

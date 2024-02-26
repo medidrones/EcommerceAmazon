@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Application.Features.Products.Commands.CreateProduct;
+namespace Ecommerce.Application.Features.Products.Commands.CreateProduct;
 
 public class CreateProductImageCommand
 {

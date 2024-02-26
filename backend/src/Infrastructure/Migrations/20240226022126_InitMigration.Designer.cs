@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Ecommerce.Infrastructure.Migrations
 {
     [DbContext(typeof(EcommerceDbContext))]
-    [Migration("20230903014101_InitMigration")]
+    [Migration("20240226022126_InitMigration")]
     partial class InitMigration
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace Ecommerce.Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.10")
+                .HasAnnotation("ProductVersion", "7.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -39,10 +39,10 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<string>("CodigoPostal")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreateDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Departamento")
@@ -76,10 +76,10 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CreateBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreateDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastModifiedBy")
@@ -104,10 +104,10 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CreateBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreateDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Iso2")
@@ -138,10 +138,10 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CreateBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreateDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastModifiedBy")
@@ -180,13 +180,13 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<string>("CompradorNombre")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CompradorUserName")
+                    b.Property<string>("CompradorUsername")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreateDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Impuesto")
@@ -237,11 +237,17 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<string>("Ciudad")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateBy")
+                    b.Property<string>("CodigoPostal")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreateDate")
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Departamento")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
@@ -255,7 +261,7 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<string>("Pais")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("UserName")
+                    b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -274,13 +280,13 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<int>("Cantidad")
                         .HasColumnType("int");
 
-                    b.Property<string>("CreateBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreateDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("ImageUrl")
+                    b.Property<string>("ImagenUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastModifiedBy")
@@ -324,13 +330,13 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("CreateBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreateDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Descripction")
+                    b.Property<string>("Descripcion")
                         .HasColumnType("NVARCHAR(4000)");
 
                     b.Property<string>("LastModifiedBy")
@@ -375,10 +381,10 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<string>("Comentario")
                         .HasColumnType("NVARCHAR(4000)");
 
-                    b.Property<string>("CreateBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreateDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastModifiedBy")
@@ -411,10 +417,10 @@ namespace Ecommerce.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("CreateBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreateDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("LastModifiedBy")
@@ -445,10 +451,10 @@ namespace Ecommerce.Infrastructure.Migrations
                     b.Property<string>("Categoria")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreateBy")
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreateDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Imagen")

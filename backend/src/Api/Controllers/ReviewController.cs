@@ -1,4 +1,5 @@
-﻿using Ecommerce.Application.Features.Reviews.Commands.CreateReview;
+using System.Net;
+using Ecommerce.Application.Features.Reviews.Commands.CreateReview;
 using Ecommerce.Application.Features.Reviews.Commands.DeleteReview;
 using Ecommerce.Application.Features.Reviews.Queries.PaginationReviews;
 using Ecommerce.Application.Features.Reviews.Queries.Vms;
@@ -7,9 +8,8 @@ using Ecommerce.Application.Models.Authorization;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
-namespace Ecommerce.Api.Controllers;
+namespace Ecommerce.Api;
 
 [ApiController]
 [Route("api/v1/[controller]")]
@@ -24,7 +24,7 @@ public class ReviewController : ControllerBase
 
     [HttpPost(Name = "CreateReview")]
     [ProducesResponseType((int)HttpStatusCode.OK)]
-    public async Task<ActionResult<ReviewVm>> CreateReview([FromBody]CreateReviewCommand request)
+    public async Task<ActionResult<ReviewVm>> CreateReview([FromBody] CreateReviewCommand request)
     {
         return await _mediator.Send(request);
     }

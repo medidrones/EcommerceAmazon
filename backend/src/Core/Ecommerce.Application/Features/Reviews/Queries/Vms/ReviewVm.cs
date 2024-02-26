@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Application.Features.Reviews.Queries.Vms;
+namespace Ecommerce.Application.Features.Reviews.Queries.Vms;
 
 public class ReviewVm
 {

@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecommerce.Application.Exceptions;
 using Ecommerce.Application.Features.Products.Queries.Vms;
 using Ecommerce.Application.Persistence;
@@ -36,7 +36,6 @@ public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommand,
             _unitOfWork.Repository<Image>().DeleteRange(imagesToRemove);
 
             request.ImageUrls.Select(c => { c.ProductId = request.Id; return c; }).ToList();
-
             var images = _mapper.Map<List<Image>>(request.ImageUrls);
             _unitOfWork.Repository<Image>().AddRange(images);
 

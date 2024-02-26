@@ -1,4 +1,4 @@
-﻿using Ecommerce.Application.Features.ShoppingCarts.Vms;
+using Ecommerce.Application.Features.ShoppingCarts.Vms;
 using MediatR;
 
 namespace Ecommerce.Application.Features.ShoppingCarts.Commands.UpdateShoppingCart;

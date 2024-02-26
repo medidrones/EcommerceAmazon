@@ -1,9 +1,9 @@
-﻿using Ecommerce.Application.Features.Categories.Queries.GetCategoryList;
+using System.Net;
+using Ecommerce.Application.Features.Categories.Queries.GetCategoryList;
 using Ecommerce.Application.Features.Categories.Vms;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace Ecommerce.Api.Controllers;
 

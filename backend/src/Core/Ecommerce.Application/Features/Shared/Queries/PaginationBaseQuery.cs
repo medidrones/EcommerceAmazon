@@ -1,11 +1,10 @@
-﻿namespace Ecommerce.Application.Features.Shared.Queries;
+namespace Ecommerce.Application.Features.Shared.Queries;
 
 public class PaginationBaseQuery
 {
     public string? Search { get; set; }
     public string? Sort { get; set; }
     public int PageIndex { get; set; } = 1;
-    
     private int _pageSize = 3;
     private const int MaxPageSize = 50;
 

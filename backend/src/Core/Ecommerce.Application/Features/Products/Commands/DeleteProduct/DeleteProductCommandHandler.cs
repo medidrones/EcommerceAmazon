@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecommerce.Application.Exceptions;
 using Ecommerce.Application.Features.Products.Queries.Vms;
 using Ecommerce.Application.Persistence;
@@ -21,15 +21,14 @@ public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommand,
     public async Task<ProductVm> Handle(DeleteProductCommand request, CancellationToken cancellationToken)
     {
         var productToUpdate = await _unitOfWork.Repository<Product>().GetByIdAsync(request.ProductId);
-        
-        if (productToUpdate is null)
+
+        if(productToUpdate is null)
         {
             throw new NotFoundException(nameof(Product), request.ProductId);
         }
 
-        productToUpdate.Status = productToUpdate.Status == ProductStatus.Inactivo 
-            ? ProductStatus.Activo : ProductStatus.Inactivo;
-
+        productToUpdate.Status = productToUpdate.Status == ProductStatus.Inactivo ? ProductStatus.Activo : ProductStatus.Inactivo;
+            
         await _unitOfWork.Repository<Product>().UpdateAsync(productToUpdate);
 
         return _mapper.Map<ProductVm>(productToUpdate);

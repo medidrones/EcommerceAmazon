@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecommerce.Application.Contracts.Identity;
 using Ecommerce.Application.Features.Addresses.Vms;
 using Ecommerce.Application.Features.Auths.Users.Vms;
@@ -16,7 +16,8 @@ public class GetUserByTokenQueryHandler : IRequestHandler<GetUserByTokenQuery, A
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public GetUserByTokenQueryHandler(UserManager<Usuario> userManager, IAuthService authService, IUnitOfWork unitOfWork, IMapper mapper)
+    public GetUserByTokenQueryHandler(UserManager<Usuario> userManager, IAuthService authService, 
+        IUnitOfWork unitOfWork, IMapper mapper)
     {
         _userManager = userManager;
         _authService = authService;
@@ -27,20 +28,18 @@ public class GetUserByTokenQueryHandler : IRequestHandler<GetUserByTokenQuery, A
     public async Task<AuthResponse> Handle(GetUserByTokenQuery request, CancellationToken cancellationToken)
     {
         var user = await _userManager.FindByNameAsync(_authService.GetSessionUser());
+
+        if(user is null)
+        {
+            throw new Exception("El usuario no esta autenticado");
+        }
         
-        if (user is null)
+        if(!user.IsActive)
         {
-            throw new Exception("El usuario no esta autenticado.");
+            throw new Exception("El usuario esta bloqueado, contacte al admin");
         }
 
-        if (!user.IsActive)
-        {
-            throw new Exception("El usuario esta bloqueado, contacte al admin.");
-        }
-
-        var direccionEnvio = await _unitOfWork.Repository<Address>().GetEntityAsync(
-            x => x.Username == user.UserName);
-
+        var direccionEnvio = await _unitOfWork.Repository<Address>().GetEntityAsync(x => x.Username == user.UserName);  
         var roles = await _userManager.GetRolesAsync(user);
 
         return new AuthResponse
@@ -52,7 +51,7 @@ public class GetUserByTokenQueryHandler : IRequestHandler<GetUserByTokenQuery, A
             Email = user.Email,
             Username = user.UserName,
             Avatar = user.AvatarUrl,
-            DireccionEnvio = _mapper.Map<AddressVm>(direccionEnvio),
+            DireccionEnvio =  _mapper.Map<AddressVm>(direccionEnvio),
             Token = _authService.CreateToken(user, roles),
             Roles = roles
         };

@@ -1,9 +1,9 @@
-﻿using Ecommerce.Application.Features.Countries.Queries.GetCountryList;
+using System.Net;
+using Ecommerce.Application.Features.Countries.Queries.GetCountryList;
 using Ecommerce.Application.Features.Countries.Vms;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
 namespace Ecommerce.Api.Controllers;
 

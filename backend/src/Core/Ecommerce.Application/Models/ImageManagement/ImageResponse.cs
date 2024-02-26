@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Application.Models.ImageManagement;
+namespace Ecommerce.Application.Models.ImageManagement;
 
 public class ImageResponse
 {

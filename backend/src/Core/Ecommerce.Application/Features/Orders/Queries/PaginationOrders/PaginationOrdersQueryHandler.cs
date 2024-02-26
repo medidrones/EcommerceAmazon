@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecommerce.Application.Features.Orders.Vms;
 using Ecommerce.Application.Features.Shared.Queries;
 using Ecommerce.Application.Persistence;
@@ -6,7 +6,7 @@ using Ecommerce.Application.Specifications.Orders;
 using Ecommerce.Domain;
 using MediatR;
 
-namespace Ecommerce.Application.Features.Orders.Queries.PaginationOrders;
+namespace Ecommerce.Application.Features.Orders.Queries.PaginationOrdersQuery;
 
 public class PaginationOrdersQueryHandler : IRequestHandler<PaginationOrdersQuery, PaginationVm<OrderVm>>
 {
@@ -27,15 +27,15 @@ public class PaginationOrdersQueryHandler : IRequestHandler<PaginationOrdersQuer
             PageSize = request.PageSize,
             Search = request.Search,
             Sort = request.Sort,
-            Id = request.Id,
-            Username = request.Username
+            Id =request.Id,
+            Username =request.Username
         };
 
-        var specification = new OrderSpecification(orderSpecificationParams);
-        var orders = await _unitOfWork.Repository<Order>().GetAllWithSpec(specification);
+        var spec = new OrderSpecification(orderSpecificationParams);
+        var orders = await _unitOfWork.Repository<Order>().GetAllWithSpec(spec);
 
-        var specificationCount = new OrderForCountingSpecification(orderSpecificationParams);
-        var totalOrders = await _unitOfWork.Repository<Order>().CountAsync(specificationCount);
+        var specCount = new OrderForCountingSpecification(orderSpecificationParams);
+        var totalOrders = await _unitOfWork.Repository<Order>().CountAsync(specCount);
 
         var rounded = Math.Ceiling(Convert.ToDecimal(totalOrders) / Convert.ToDecimal(request.PageSize));
         var totalPages = Convert.ToInt32(rounded);

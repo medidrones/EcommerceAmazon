@@ -1,4 +1,4 @@
-﻿using System.IdentityModel.Tokens.Jwt;
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Ecommerce.Application.Contracts.Identity;
@@ -23,7 +23,7 @@ public class AuthService : IAuthService
 
     public string CreateToken(Usuario usuario, IList<string>? roles)
     {
-        var claims = new List<Claim>
+        var claims = new List<Claim> 
         {
             new Claim(JwtRegisteredClaimNames.NameId, usuario.UserName!),
             new Claim("userId", usuario.Id),
@@ -35,17 +35,17 @@ public class AuthService : IAuthService
             var claim = new Claim(ClaimTypes.Role, rol);
             claims.Add(claim);
         }
-        
+
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key!));
-        var credentiales = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+        var credenciales = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
 
         var tokenDescription = new SecurityTokenDescriptor
         {
             Subject = new ClaimsIdentity(claims),
             Expires = DateTime.UtcNow.Add(_jwtSettings.ExpireTime),
-            SigningCredentials = credentiales
+            SigningCredentials = credenciales
         };
-        
+
         var tokenHandler = new JwtSecurityTokenHandler();
         var token = tokenHandler.CreateToken(tokenDescription);
 
@@ -54,9 +54,9 @@ public class AuthService : IAuthService
 
     public string GetSessionUser()
     {
-        var userName = _httpContextAccessor.HttpContext!.User?.Claims?
-            .FirstOrDefault(x => x.Type == ClaimTypes.NameIdentifier)?.Value;
+        var username = _httpContextAccessor.HttpContext!.User?.Claims?.FirstOrDefault(
+            x => x.Type == ClaimTypes.NameIdentifier)?.Value;
 
-        return userName!;
+        return username!;
     }
 }

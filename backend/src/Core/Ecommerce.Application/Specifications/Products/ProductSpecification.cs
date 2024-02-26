@@ -1,20 +1,20 @@
-﻿using Ecommerce.Domain;
+using Ecommerce.Domain;
 
 namespace Ecommerce.Application.Specifications.Products;
 
 public class ProductSpecification : BaseSpecification<Product>
 {
-    public ProductSpecification(ProductSpecificationParams productParams) : base(x => 
-        (string.IsNullOrEmpty(productParams.Search) || 
-         x.Nombre!.Contains(productParams.Search) || 
-         x.Descripction!.Contains(productParams.Search)) && 
-        (!productParams.CategoryId.HasValue || x.CategoryId == productParams.CategoryId) && 
-        (!productParams.PrecioMin.HasValue || x.Precio >= productParams.PrecioMin) && 
-        (!productParams.PrecioMax.HasValue || x.Precio <= productParams.PrecioMax) && 
-        (!productParams.Status.HasValue || x.Status == productParams.Status))
+    public ProductSpecification(ProductSpecificationParams productParams) : base(
+        x => (string.IsNullOrEmpty(productParams.Search) || 
+        x.Nombre!.Contains(productParams.Search) || 
+        x.Descripcion!.Contains(productParams.Search)) && (!productParams.CategoryId.HasValue || 
+        x.CategoryId == productParams.CategoryId) && (!productParams.PrecioMin.HasValue || 
+        x.Precio >= productParams.PrecioMin) && (!productParams.PrecioMax.HasValue || 
+        x.Precio <= productParams.PrecioMax) && (!productParams.Status.HasValue || 
+        x.Status == productParams.Status))
     {
-        AddInclude(x => x.Reviews!);
-        AddInclude(x => x.Images!);
+        AddInclude(p => p.Reviews!);
+        AddInclude(p => p.Images!);
         ApplyPaging(productParams.PageSize * (productParams.PageIndex - 1), productParams.PageSize);
 
         if (!string.IsNullOrEmpty(productParams.Sort))
@@ -24,29 +24,35 @@ public class ProductSpecification : BaseSpecification<Product>
                 case "nombreAsc":
                     AddOrderBy(p => p.Nombre!);
                     break;
+
                 case "nombreDesc":
                     AddOrderByDescending(p => p.Nombre!);
                     break;
+
                 case "precioAsc":
                     AddOrderBy(p => p.Precio!);
                     break;
+
                 case "precioDesc":
                     AddOrderByDescending(p => p.Precio!);
                     break;
+
                 case "ratingAsc":
                     AddOrderBy(p => p.Rating!);
                     break;
+
                 case "ratingDesc":
                     AddOrderByDescending(p => p.Rating!);
                     break;
+
                 default:
-                    AddOrderBy(n => n.CreateDate!);
+                    AddOrderBy(p => p.CreatedDate!);
                     break;
             }
         }
         else
         {
-            AddOrderByDescending(n => n.CreateDate!);
+            AddOrderByDescending(p => p.CreatedDate!);
         }
     }
 }

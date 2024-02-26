@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecommerce.Application.Features.Reviews.Queries.Vms;
 using Ecommerce.Application.Features.Shared.Queries;
 using Ecommerce.Application.Persistence;
@@ -21,28 +21,28 @@ public class PaginationReviewsQueryHandler : IRequestHandler<PaginationReviewsQu
 
     public async Task<PaginationVm<ReviewVm>> Handle(PaginationReviewsQuery request, CancellationToken cancellationToken)
     {
-        var reviewSpecificationParams = new ReviewSpecificationParams 
+        var reviewSpecificationParams = new ReviewSpecificationParams
         {
             PageIndex = request.PageIndex,
             PageSize = request.PageSize,
             Search = request.Search,
-            Sort = request.Sort,
+            Sort  = request.Sort,
             ProductId = request.ProductId
         };
 
-        var specification = new ReviewSpecification(reviewSpecificationParams);
-        var reviews = await _unitOfWork.Repository<Review>().GetAllWithSpec(specification);
+        var spec = new ReviewSpecification(reviewSpecificationParams);
+        var reviews = await _unitOfWork.Repository<Review>().GetAllWithSpec(spec);
 
-        var specificationCount = new ReviewForCountingSpecification(reviewSpecificationParams);
-        var totalReviews = await _unitOfWork.Repository<Review>().CountAsync(specificationCount);
+        var specCount = new ReviewForCountingSpecification(reviewSpecificationParams);
+        var totalReviews = await _unitOfWork.Repository<Review>().CountAsync(specCount);
 
         var rounded = Math.Ceiling(Convert.ToDecimal(totalReviews) / Convert.ToDecimal(request.PageSize));
         var totalPages = Convert.ToInt32(rounded);
 
-        var data = _mapper.Map<IReadOnlyList<Review>, IReadOnlyList<ReviewVm>>(reviews);
+        var data  = _mapper.Map<IReadOnlyList<Review>, IReadOnlyList<ReviewVm>>(reviews);
         var reviewsByPage = reviews.Count();
 
-        var pagination = new PaginationVm<ReviewVm> 
+        var pagination = new PaginationVm<ReviewVm>
         {
             Count = totalReviews,
             Data = data,
@@ -52,6 +52,6 @@ public class PaginationReviewsQueryHandler : IRequestHandler<PaginationReviewsQu
             ResultByPage = reviewsByPage
         };
 
-        return pagination;
+        return  pagination;
     }
 }

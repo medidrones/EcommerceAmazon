@@ -1,4 +1,4 @@
-﻿using Ecommerce.Application.Features.Images.Queries.Vms;
+using Ecommerce.Application.Features.Images.Queries.Vms;
 using Ecommerce.Application.Features.Reviews.Queries.Vms;
 using Ecommerce.Application.Models.Product;
 using Ecommerce.Domain;
@@ -13,30 +13,33 @@ public class ProductVm
     public int Rating { get; set; }
     public string? Vendedor { get; set; }
     public int Stock { get; set; }
+    public virtual ICollection<ReviewVm>? Reviews { get; set; }
+    public virtual ICollection<ImageVm>? Images { get; set; }
     public int CategoryId { get; set; }
     public string? CategoryNombre { get; set; }
     public int NumeroReviews { get; set; }
+    public ProductStatus Status { get; set; }
 
-    public string? StatusLabel
+    public string StatusLabel
     {
         get
         {
             switch (Status)
             {
                 case ProductStatus.Activo:
-                    return ProductoStatusLavel.ACTIVO;
-                
+                    {
+                        return ProductoStatusLabel.ACTIVO;
+                    }
+
                 case ProductStatus.Inactivo:
-                    return ProductoStatusLavel.INACTIVO;
-                
-                default:
-                    return ProductoStatusLavel.INACTIVO;
+                    {
+                        return ProductoStatusLabel.INACTIVO;
+                    }
+
+                default: return ProductoStatusLabel.INACTIVO;
             }
         }
+
         set { }
     }
-
-    public virtual ICollection<ReviewVm>? Reviews { get; set; }
-    public virtual ICollection<ImageVm>? Images { get; set; }
-    public ProductStatus Status { get; set; }
 }

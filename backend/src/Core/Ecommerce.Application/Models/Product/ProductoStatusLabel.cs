@@ -1,6 +1,6 @@
-﻿namespace Ecommerce.Application.Models.Product;
+namespace Ecommerce.Application.Models.Product;
 
-public static class ProductoStatusLavel
+public static class ProductoStatusLabel
 {
     public const string ACTIVO = nameof(ACTIVO);
     public const string INACTIVO = nameof(INACTIVO);

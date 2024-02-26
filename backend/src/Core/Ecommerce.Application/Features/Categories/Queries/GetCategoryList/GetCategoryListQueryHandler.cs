@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecommerce.Application.Features.Categories.Vms;
 using Ecommerce.Application.Persistence;
 using Ecommerce.Domain;
@@ -19,10 +19,7 @@ public class GetCategoryListQueryHandler : IRequestHandler<GetCategoryListQuery,
 
     public async Task<IReadOnlyList<CategoryVm>> Handle(GetCategoryListQuery request, CancellationToken cancellationToken)
     {
-        var categories = await _unitOfWork.Repository<Category>().GetAsync(
-            null, 
-            x => x.OrderBy(y => y.Nombre), 
-            string.Empty, false);
+        var categories = await _unitOfWork.Repository<Category>().GetAsync(null, x => x.OrderBy(y => y.Nombre), string.Empty, false);
 
         return _mapper.Map<IReadOnlyList<CategoryVm>>(categories);
     }

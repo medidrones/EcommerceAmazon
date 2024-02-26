@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Application.Models.Email;
+namespace Ecommerce.Application.Models.Email;
 
 public class EmailMessage
 {

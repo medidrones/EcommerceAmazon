@@ -1,4 +1,4 @@
-﻿using Ecommerce.Domain;
+using Ecommerce.Domain;
 using Ecommerce.Domain.Common;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Ecommerce.Infrastructure.Persistence;
 
-public class EcommerceDbContext : IdentityDbContext<Usuario>
+public class EcommerceDbContext : IdentityDbContext<Usuario> 
 {
     public EcommerceDbContext(DbContextOptions<EcommerceDbContext> options) : base(options)
     { }
@@ -20,10 +20,10 @@ public class EcommerceDbContext : IdentityDbContext<Usuario>
             switch (entry.State)
             {
                 case EntityState.Added:
-                    entry.Entity.CreateDate = DateTime.Now;
-                    entry.Entity.CreateBy = userName;
+                    entry.Entity.CreatedDate = DateTime.Now;
+                    entry.Entity.CreatedBy = userName;
                     break;
-                
+
                 case EntityState.Modified:
                     entry.Entity.LastModifiedDate = DateTime.Now;
                     entry.Entity.LastModifiedBy = userName;
@@ -58,15 +58,15 @@ public class EcommerceDbContext : IdentityDbContext<Usuario>
             .HasForeignKey(r => r.ProductId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade);
-         
-        builder.Entity<ShoppingCart>()
-            .HasMany(p => p.ShoppingCartItems)
-            .WithOne(r => r.ShoppingCart)
-            .HasForeignKey(r => r.ShoppingCartId)
-            .IsRequired()
-            .OnDelete(DeleteBehavior.Cascade);
 
-        builder.Entity<Usuario>().Property(x => x.Id).HasMaxLength(36);
+        builder.Entity<ShoppingCart>()
+        .HasMany(p => p.ShoppingCartItems)
+        .WithOne(r => r.ShoppingCart)
+        .HasForeignKey(r => r.ShoppingCartId)
+        .IsRequired()
+        .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Entity<Usuario>().Property(x => x.Id).HasMaxLength(36); //250
         builder.Entity<Usuario>().Property(x => x.NormalizedUserName).HasMaxLength(90);
         builder.Entity<IdentityRole>().Property(x => x.Id).HasMaxLength(36);
         builder.Entity<IdentityRole>().Property(x => x.NormalizedName).HasMaxLength(90);

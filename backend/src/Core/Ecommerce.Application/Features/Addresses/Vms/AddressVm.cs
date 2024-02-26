@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Application.Features.Addresses.Vms;
+namespace Ecommerce.Application.Features.Addresses.Vms;
 
 public class AddressVm
 {

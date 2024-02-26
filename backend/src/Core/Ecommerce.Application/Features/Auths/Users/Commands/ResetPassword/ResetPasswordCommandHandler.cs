@@ -1,4 +1,4 @@
-﻿using Ecommerce.Application.Contracts.Identity;
+using Ecommerce.Application.Contracts.Identity;
 using Ecommerce.Application.Exceptions;
 using Ecommerce.Domain;
 using MediatR;
@@ -21,9 +21,9 @@ public class ResetPasswordCommandHandler : IRequestHandler<ResetPasswordCommand>
     {
         var updateUsuario = await _userManager.FindByNameAsync(_authService.GetSessionUser());
 
-        if (updateUsuario is null) 
+        if (updateUsuario is null)
         {
-            throw new BadRequestException("El usuario no existe.");
+            throw new BadRequestException("El usuario no existe");
         }
 
         var resultValidateOldPassword = _userManager.PasswordHasher
@@ -31,17 +31,17 @@ public class ResetPasswordCommandHandler : IRequestHandler<ResetPasswordCommand>
 
         if (!(resultValidateOldPassword == PasswordVerificationResult.Success))
         {
-            throw new BadRequestException("El actual password ingresado es erroneo.");
+            throw new BadRequestException("El actual password ingresado es erroneo");
         }
 
         var hashedNewPassword = _userManager.PasswordHasher.HashPassword(updateUsuario, request.NewPassword!);
         updateUsuario.PasswordHash = hashedNewPassword;
 
         var resultado = await _userManager.UpdateAsync(updateUsuario);
-        
-        if (!resultado.Succeeded) 
+
+        if (!resultado.Succeeded)
         {
-            throw new Exception("No se pudo resetear el password.");
+            throw new Exception("No se pudo resetear el password");
         }
 
         return Unit.Value;

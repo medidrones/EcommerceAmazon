@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecommerce.Application.Features.Products.Queries.Vms;
 using Ecommerce.Application.Persistence;
 using Ecommerce.Domain;
@@ -22,11 +22,12 @@ public class CreateProductCommandHandler : IRequestHandler<CreateProductCommand,
         var productEntity = _mapper.Map<Product>(request);
         await _unitOfWork.Repository<Product>().AddAsync(productEntity);
 
-        if ((request.ImageUrls is not null) && request.ImageUrls.Count > 0)
+        if((request.ImageUrls is not null) && request.ImageUrls.Count > 0)
         {
-            request.ImageUrls.Select(c => { c.ProductId = productEntity.Id; return c; }).ToList();
+            request.ImageUrls.Select(c => {c.ProductId = productEntity.Id; return c;}).ToList();
 
             var images = _mapper.Map<List<Image>>(request.ImageUrls);
+
             _unitOfWork.Repository<Image>().AddRange(images);
             await _unitOfWork.Complete();
         }

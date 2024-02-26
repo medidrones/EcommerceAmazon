@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Application.Specifications.Reviews;
+namespace Ecommerce.Application.Specifications.Reviews;
 
 public class ReviewSpecificationParams : SpecificationParams
 {

@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Application.Features.ShoppingCarts.Vms;
+namespace Ecommerce.Application.Features.ShoppingCarts.Vms;
 
 public class ShoppingCartItemVm
 {
@@ -8,13 +8,13 @@ public class ShoppingCartItemVm
     public decimal Precio { get; set; }
     public int Cantidad { get; set; }
     public string? Categoria { get; set; }
-    public int Stock { get; set; }    
+    public int Stock { get; set; }
 
     public decimal TotalLine
     {
-        get 
-        { 
-            return Math.Round(Cantidad * Precio, 2); 
+        get
+        {
+            return Math.Round(Cantidad * Precio, 2);
         }
 
         set { }

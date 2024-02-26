@@ -1,4 +1,4 @@
-﻿using Ecommerce.Application.Contracts.Identity;
+using Ecommerce.Application.Contracts.Identity;
 using Ecommerce.Application.Exceptions;
 using Ecommerce.Application.Features.Auths.Users.Vms;
 using Ecommerce.Domain;
@@ -22,21 +22,21 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, A
 
     public async Task<AuthResponse> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
-        var existenteUserByEmail = await _userManager.FindByEmailAsync(request.Email!) is null ? false : true;
+        var existeUserByEmail = await _userManager.FindByEmailAsync(request.Email!) is null ? false : true;
 
-        if (existenteUserByEmail)
+        if (existeUserByEmail)
         {
             throw new BadRequestException("El Email del usuario ya existe en la base de datos");
         }
 
-        var existenteUserByUsername = await _userManager.FindByNameAsync(request.Username!) is null ? false : true;
+        var existeUserByUsername = await _userManager.FindByNameAsync(request.Username!) is null ? false : true;
 
-        if (existenteUserByUsername)
+        if (existeUserByEmail)
         {
             throw new BadRequestException("El Username del usuario ya existe en la base de datos");
         }
 
-        var usuario = new Usuario 
+        var usuario = new Usuario
         {
             Nombre = request.Nombre,
             Apellido = request.Apellido,
@@ -48,7 +48,7 @@ public class RegisterUserCommandHandler : IRequestHandler<RegisterUserCommand, A
 
         var resultado = await _userManager.CreateAsync(usuario!, request.Password!);
 
-        if (resultado.Succeeded) 
+        if (resultado.Succeeded)
         {
             await _userManager.AddToRoleAsync(usuario, AppRole.GenericUser);
             var roles = await _userManager.GetRolesAsync(usuario);

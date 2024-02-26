@@ -1,4 +1,4 @@
-﻿using System.Net;
+using System.Net;
 using Ecommerce.Application.Contracts.Infrastructure;
 using Ecommerce.Application.Features.Products.Commands.CreateProduct;
 using Ecommerce.Application.Features.Products.Commands.DeleteProduct;
@@ -21,8 +21,8 @@ namespace Ecommerce.Api.Controllers;
 [Route("api/v1/[controller]")]
 public class ProductController : ControllerBase
 {
-    private readonly IMediator _mediator;
-    private readonly IManageImageService _manageImageService;
+    private IMediator _mediator;
+    private IManageImageService _manageImageService;
 
     public ProductController(IMediator mediator, IManageImageService manageImageService)
     {
@@ -37,28 +37,26 @@ public class ProductController : ControllerBase
     {
         var query = new GetProductListQuery();
         var productos = await _mediator.Send(query);
-        
+
         return Ok(productos);
     }
 
     [AllowAnonymous]
     [HttpGet("pagination", Name = "PaginationProduct")]
     [ProducesResponseType(typeof(PaginationVm<ProductVm>), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<PaginationVm<ProductVm>>> PaginationProduct(
-        [FromQuery] PaginationProductsQuery paginationProductsQuery)
+    public async Task<ActionResult<PaginationVm<ProductVm>>> PaginationProduct([FromQuery] PaginationProductsQuery paginationProductsQuery)
     {
         paginationProductsQuery.Status = ProductStatus.Activo;
         var paginationProduct = await _mediator.Send(paginationProductsQuery);
-        
+
         return Ok(paginationProduct);
     }
 
     [Authorize(Roles = Role.ADMIN)]
     [HttpGet("paginationAdmin", Name = "PaginationProductAdmin")]
     [ProducesResponseType(typeof(PaginationVm<ProductVm>), (int)HttpStatusCode.OK)]
-    public async Task<ActionResult<PaginationVm<ProductVm>>> PaginationProductAdmin(
-        [FromQuery] PaginationProductsQuery paginationProductsQuery)
-    {        
+    public async Task<ActionResult<PaginationVm<ProductVm>>> PaginationAdmin([FromQuery] PaginationProductsQuery paginationProductsQuery)
+    {
         var paginationProduct = await _mediator.Send(paginationProductsQuery);
 
         return Ok(paginationProduct);
@@ -70,9 +68,8 @@ public class ProductController : ControllerBase
     public async Task<ActionResult<ProductVm>> GetProductById(int id)
     {
         var query = new GetProductByIdQuery(id);
-        var product = await _mediator.Send(query);
-        
-        return Ok(product);
+
+        return Ok(await _mediator.Send(query));
     }
 
     [Authorize(Roles = Role.ADMIN)]

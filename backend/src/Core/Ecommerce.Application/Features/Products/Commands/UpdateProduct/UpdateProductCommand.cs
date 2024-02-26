@@ -1,4 +1,4 @@
-﻿using Ecommerce.Application.Features.Products.Commands.CreateProduct;
+using Ecommerce.Application.Features.Products.Commands.CreateProduct;
 using Ecommerce.Application.Features.Products.Queries.Vms;
 using MediatR;
 using Microsoft.AspNetCore.Http;

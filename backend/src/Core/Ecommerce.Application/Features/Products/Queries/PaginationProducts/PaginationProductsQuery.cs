@@ -1,4 +1,4 @@
-﻿using Ecommerce.Application.Features.Products.Queries.Vms;
+using Ecommerce.Application.Features.Products.Queries.Vms;
 using Ecommerce.Application.Features.Shared.Queries;
 using Ecommerce.Domain;
 using MediatR;
@@ -11,6 +11,6 @@ public class PaginationProductsQuery : PaginationBaseQuery, IRequest<PaginationV
     public decimal? PrecioMax { get; set; }
     public decimal? PrecioMin { get; set; }
     public int? Rating { get; set; }
-    
+
     public ProductStatus? Status { get; set; }
 }

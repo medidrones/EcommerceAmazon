@@ -1,11 +1,10 @@
-﻿using System.Linq.Expressions;
+using System.Linq.Expressions;
 using Ecommerce.Application.Persistence;
 using Ecommerce.Application.Specifications;
-using Ecommerce.Infrastructure.Persistence;
 using Ecommerce.Infrastructure.Specification;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ecommerce.Infrastructure.Repositories;
+namespace Ecommerce.Infrastructure.Persistence.Repositories;
 
 public class RepositoryBase<T> : IAsyncRepository<T> where T : class
 {
@@ -20,7 +19,7 @@ public class RepositoryBase<T> : IAsyncRepository<T> where T : class
     {
         _context.Set<T>().Add(entity);
         await _context.SaveChangesAsync();
-        
+
         return entity;
     }
 
@@ -60,10 +59,11 @@ public class RepositoryBase<T> : IAsyncRepository<T> where T : class
         return await _context.Set<T>().Where(predicate).ToListAsync();
     }
 
-    public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>>? predicate, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy, string? includeString, bool disableTracking = true)
+    public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>>? predicate, Func<IQueryable<T>, 
+        IOrderedQueryable<T>>? orderBy, string? includeString, bool disableTracking = true)
     {
         IQueryable<T> query = _context.Set<T>();
-        
+
         if (disableTracking) query = query.AsNoTracking();
 
         if (!string.IsNullOrWhiteSpace(includeString)) query = query.Include(includeString);
@@ -76,10 +76,11 @@ public class RepositoryBase<T> : IAsyncRepository<T> where T : class
         return await query.ToListAsync();
     }
 
-    public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>>? predicate, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, List<Expression<Func<T, object>>>? includes = null, bool disableTracking = true)
+    public async Task<IReadOnlyList<T>> GetAsync(Expression<Func<T, bool>>? predicate, Func<IQueryable<T>, 
+        IOrderedQueryable<T>>? orderBy = null, List<Expression<Func<T, object>>>? includes = null, bool disableTracking = true)
     {
         IQueryable<T> query = _context.Set<T>();
-        
+
         if (disableTracking) query = query.AsNoTracking();
 
         if (includes != null) query = includes.Aggregate(query, (current, include) => current.Include(include));
@@ -97,16 +98,17 @@ public class RepositoryBase<T> : IAsyncRepository<T> where T : class
         return (await _context.Set<T>().FindAsync(id))!;
     }
 
-    public async Task<T> GetEntityAsync(Expression<Func<T, bool>>? predicate, List<Expression<Func<T, object>>>? includes = null, bool disableTracking = true)
+    public async Task<T> GetEntityAsync(Expression<Func<T, bool>>? predicate, List<Expression<Func<T, object>>>? includes = null, 
+        bool disableTracking = true)
     {
         IQueryable<T> query = _context.Set<T>();
-        
+
         if (disableTracking) query = query.AsNoTracking();
 
         if (includes != null) query = includes.Aggregate(query, (current, include) => current.Include(include));
 
         if (predicate != null) query = query.Where(predicate);
-        
+
         return (await query.FirstOrDefaultAsync())!;
     }
 
@@ -115,16 +117,16 @@ public class RepositoryBase<T> : IAsyncRepository<T> where T : class
         _context.Set<T>().Attach(entity);
         _context.Entry(entity).State = EntityState.Modified;
         await _context.SaveChangesAsync();
-        
+
         return entity;
     }
 
     public void UpdateEntity(T entity)
     {
         _context.Set<T>().Attach(entity);
-       _context.Entry(entity).State = EntityState.Modified;
+        _context.Entry(entity).State = EntityState.Modified;
     }
-    
+
     public async Task<int> CountAsync(ISpecification<T> spec)
     {
         return await ApplySpecification(spec).CountAsync();
@@ -139,7 +141,7 @@ public class RepositoryBase<T> : IAsyncRepository<T> where T : class
     {
         return (await ApplySpecification(spec).FirstOrDefaultAsync())!;
     }
-    
+
     public IQueryable<T> ApplySpecification(ISpecification<T> spec)
     {
         return SpecificationEvaluator<T>.GetQuery(_context.Set<T>().AsQueryable(), spec);

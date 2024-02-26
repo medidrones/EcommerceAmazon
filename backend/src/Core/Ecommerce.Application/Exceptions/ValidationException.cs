@@ -1,12 +1,12 @@
-﻿using FluentValidation.Results;
+using FluentValidation.Results;
 
 namespace Ecommerce.Application.Exceptions;
 
 public class ValidationException : ApplicationException
 {
     public IDictionary<string, string[]> Errors { get; }
-    
-    public ValidationException() : base("Se presentaron uno o mas errores de validacion.")
+
+    public ValidationException() : base("Se presentaron uno o mas errores de validation") 
     {
         Errors = new Dictionary<string, string[]>();
     }

@@ -1,11 +1,11 @@
-﻿using System.Net;
+using System.Net;
 using Ecommerce.Api.Errors;
 using Ecommerce.Application.Exceptions;
 using Newtonsoft.Json;
 
 namespace Ecommerce.Api.Middlewares;
 
-public class ExceptionMiddleware
+public class ExceptionMiddleware 
 {
     private readonly RequestDelegate _next;
     private readonly ILogger<ExceptionMiddleware> _logger;
@@ -35,19 +35,18 @@ public class ExceptionMiddleware
                 case NotFoundException notFoundException:
                     statusCode = (int)HttpStatusCode.NotFound;
                     break;
-                
+
                 case FluentValidation.ValidationException validationException:
                     statusCode = (int)HttpStatusCode.BadRequest;
-
                     var errors = validationException.Errors.Select(ers => ers.ErrorMessage).ToArray();
                     var validationJsons = JsonConvert.SerializeObject(errors);
                     result = JsonConvert.SerializeObject(new CodeErrorException(statusCode, errors, validationJsons));
                     break;
-                
+
                 case BadRequestException badRequestException:
                     statusCode = (int)HttpStatusCode.BadRequest;
                     break;
-                
+
                 default:
                     statusCode = (int)HttpStatusCode.InternalServerError;
                     break;
@@ -55,9 +54,9 @@ public class ExceptionMiddleware
 
             if (string.IsNullOrEmpty(result))
             {
-                result = JsonConvert.SerializeObject(new CodeErrorException(statusCode, new string[]{ ex.Message }, ex.StackTrace));
+                result = JsonConvert.SerializeObject(new CodeErrorException(statusCode, new string[] { ex.Message }, ex.StackTrace));
             }
-            
+
             context.Response.StatusCode = statusCode;
             await context.Response.WriteAsync(result);
         }

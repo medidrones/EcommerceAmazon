@@ -1,9 +1,10 @@
-﻿using Ecommerce.Application.Features.Auths.Users.Vms;
+using Ecommerce.Application.Features.Auths.Users.Queries.GetUserById;
+using Ecommerce.Application.Features.Auths.Users.Vms;
 using Ecommerce.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
-namespace Ecommerce.Application.Features.Auths.Users.Queries.GetUserByIdQuery;
+namespace Ecommerce.Application.Features.Users.Queries.GetUserById;
 
 public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, AuthResponse>
 {
@@ -17,10 +18,10 @@ public class GetUserByIdQueryHandler : IRequestHandler<GetUserByIdQuery, AuthRes
     public async Task<AuthResponse> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
     {
         var user = await _userManager.FindByIdAsync(request.UserId!);
-        
-        if (user is null)
+
+        if(user is null)
         {
-            throw new Exception("El usuario no existe.");
+            throw new Exception("El usuario no existe");
         }
 
         return new AuthResponse

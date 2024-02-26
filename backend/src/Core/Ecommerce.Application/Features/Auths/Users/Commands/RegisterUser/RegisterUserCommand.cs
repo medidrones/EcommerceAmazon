@@ -1,4 +1,4 @@
-﻿using Ecommerce.Application.Features.Auths.Users.Vms;
+using Ecommerce.Application.Features.Auths.Users.Vms;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 
@@ -14,5 +14,5 @@ public class RegisterUserCommand : IRequest<AuthResponse>
     public string? FotoUrl { get; set; }
     public string? FotoId { get; set; }
     public string? Password { get; set; }
-    public string? Username { get; set; }    
+    public string? Username { get; set; }
 }

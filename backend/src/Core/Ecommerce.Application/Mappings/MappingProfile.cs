@@ -18,20 +18,20 @@ public class MappingProfile : Profile
     public MappingProfile()
     {
         CreateMap<Product, ProductVm>()
-            .ForMember(p => p.CategoryNombre, opt => opt.MapFrom(src => src.Category!.Nombre))
-            .ForMember(p => p.NumeroReviews, opt => opt.MapFrom(src => src.Reviews! == null ? 0 : src.Reviews.Count));
-        
+            .ForMember(p => p.CategoryNombre, x => x.MapFrom(a => a.Category!.Nombre))
+            .ForMember(p => p.NumeroReviews, x => x.MapFrom(a => a.Reviews == null ? 0 : a.Reviews.Count));
+
         CreateMap<Image, ImageVm>();
         CreateMap<Review, ReviewVm>();
         CreateMap<Country, CountryVm>();
         CreateMap<Category, CategoryVm>();
-
         CreateMap<CreateProductCommand, Product>();
         CreateMap<CreateProductImageCommand, Image>();
         CreateMap<UpdateProductCommand, Product>();
 
         CreateMap<ShoppingCart, ShoppingCartVm>()
             .ForMember(p => p.ShoppingCartId, x => x.MapFrom(a => a.ShoppingCartMasterId));
+
         CreateMap<ShoppingCartItem, ShoppingCartItemVm>();
         CreateMap<ShoppingCartItemVm, ShoppingCartItem>();
         CreateMap<Address, AddressVm>();

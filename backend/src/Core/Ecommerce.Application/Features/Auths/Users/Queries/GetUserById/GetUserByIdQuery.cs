@@ -1,7 +1,7 @@
-﻿using Ecommerce.Application.Features.Auths.Users.Vms;
+using Ecommerce.Application.Features.Auths.Users.Vms;
 using MediatR;
 
-namespace Ecommerce.Application.Features.Auths.Users.Queries.GetUserByIdQuery;
+namespace Ecommerce.Application.Features.Auths.Users.Queries.GetUserById;
 
 public class GetUserByIdQuery : IRequest<AuthResponse>
 {

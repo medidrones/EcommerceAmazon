@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecommerce.Application.Features.Countries.Vms;
 using Ecommerce.Application.Persistence;
 using Ecommerce.Domain;
@@ -19,12 +19,8 @@ public class GetCountryListQueryHandler : IRequestHandler<GetCountryListQuery, I
 
     public async Task<IReadOnlyList<CountryVm>> Handle(GetCountryListQuery request, CancellationToken cancellationToken)
     {
-        var countries = await _unitOfWork.Repository<Country>().GetAsync(
-            null, 
-            x => x.OrderBy(y => y.Name), 
-            string.Empty, 
-            false);
-
+        var countries = await _unitOfWork.Repository<Country>().GetAsync(null, x => x.OrderBy(y => y.Name), string.Empty, false);
+        
         return _mapper.Map<IReadOnlyList<CountryVm>>(countries);
     }
 }

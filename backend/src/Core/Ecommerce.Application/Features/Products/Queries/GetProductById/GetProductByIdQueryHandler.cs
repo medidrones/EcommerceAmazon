@@ -1,4 +1,4 @@
-﻿using System.Linq.Expressions;
+using System.Linq.Expressions;
 using AutoMapper;
 using Ecommerce.Application.Features.Products.Queries.Vms;
 using Ecommerce.Application.Persistence;
@@ -12,23 +12,20 @@ public class GetProductByIdQueryHandler : IRequestHandler<GetProductByIdQuery, P
     private readonly IUnitOfWork _unitOfWork;
     private readonly IMapper _mapper;
 
-    public GetProductByIdQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
+    public GetProductByIdQueryHandler(IMapper mapper, IUnitOfWork unitOfWork)
     {
-        _unitOfWork = unitOfWork;
         _mapper = mapper;
+        _unitOfWork = unitOfWork;
     }
 
     public async Task<ProductVm> Handle(GetProductByIdQuery request, CancellationToken cancellationToken)
     {
-        var includes = new List<Expression<Func<Product, object>>>();
-        includes.Add(x => x.Images!);
-        includes.Add(x => x.Reviews!.OrderByDescending(p => p.CreateDate));
+        var includes  = new List<Expression<Func<Product, object>>>();
+        includes.Add(p => p.Images!);
+        includes.Add(p => p.Reviews!.OrderByDescending(x => x.CreatedDate));
 
-        var product = await _unitOfWork.Repository<Product>().GetEntityAsync(
-            x => x.Id == request.ProductId,
-            includes,
-            true);
-        
+        var product = await _unitOfWork.Repository<Product>().GetEntityAsync(x => x.Id == request.ProductId, includes, true);
+
         return _mapper.Map<ProductVm>(product);
     }
 }

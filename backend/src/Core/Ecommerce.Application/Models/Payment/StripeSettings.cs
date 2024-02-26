@@ -1,8 +1,7 @@
-﻿namespace Ecommerce.Application.Models.Payment
+namespace Ecommerce.Application.Models.Payment;
+
+public class StripeSettings
 {
-    public class StripeSettings
-    {
-        public string? PublishbleKey { get; set; }
-        public string? SecretKey { get; set; }
-    }
+    public string? PublishbleKey { get; set; }
+    public string? SecretKey { get; set; }
 }

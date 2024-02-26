@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Application.Features.Categories.Vms;
+namespace Ecommerce.Application.Features.Categories.Vms;
 
 public class CategoryVm
 {

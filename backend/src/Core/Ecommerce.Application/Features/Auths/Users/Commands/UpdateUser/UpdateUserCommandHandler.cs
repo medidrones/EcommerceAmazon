@@ -1,4 +1,4 @@
-﻿using Ecommerce.Application.Contracts.Identity;
+using Ecommerce.Application.Contracts.Identity;
 using Ecommerce.Application.Exceptions;
 using Ecommerce.Application.Features.Auths.Users.Vms;
 using Ecommerce.Domain;
@@ -9,24 +9,22 @@ namespace Ecommerce.Application.Features.Auths.Users.Commands.UpdateUser;
 
 public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, AuthResponse>
 {
-    private readonly UserManager<Usuario> _userManager;
-    private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly UserManager<Usuario> _userManager;   
     private readonly IAuthService _authService;
 
-    public UpdateUserCommandHandler(UserManager<Usuario> userManager, RoleManager<IdentityRole> roleManager, IAuthService authService)
+    public UpdateUserCommandHandler(UserManager<Usuario> userManager, IAuthService authService)
     {
-        _userManager = userManager;
-        _roleManager = roleManager;
+        _userManager = userManager;       
         _authService = authService;
     }
 
     public async Task<AuthResponse> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
         var updateUsuario = await _userManager.FindByNameAsync(_authService.GetSessionUser());
-        
-        if (updateUsuario is null) 
+
+        if(updateUsuario is null)
         {
-            throw new BadRequestException("El usuario no existe.");
+           throw new BadRequestException("El usuario no existe");
         }
 
         updateUsuario.Nombre = request.Nombre;
@@ -35,10 +33,10 @@ public class UpdateUserCommandHandler : IRequestHandler<UpdateUserCommand, AuthR
         updateUsuario.AvatarUrl = request.FotoUrl ?? updateUsuario.AvatarUrl;
 
         var resultado = await _userManager.UpdateAsync(updateUsuario);
-        
-        if (!resultado.Succeeded) 
+
+        if(!resultado.Succeeded)
         {
-            throw new Exception("No se pudo actualizar el usuario.");
+            throw new Exception("No se pudo actualizar el usuario");
         }
 
         var userById = await _userManager.FindByEmailAsync(request.Email!);

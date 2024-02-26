@@ -1,4 +1,4 @@
-﻿using Ecommerce.Domain;
+using Ecommerce.Domain;
 using MediatR;
 
 namespace Ecommerce.Application.Features.Auths.Users.Commands.UpdateAdminUser;

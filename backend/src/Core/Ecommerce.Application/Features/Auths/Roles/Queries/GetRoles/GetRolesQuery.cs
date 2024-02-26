@@ -1,6 +1,6 @@
-﻿using MediatR;
+using MediatR;
 
-namespace Ecommerce.Application.Features.Auths.Roles.Queries.GetRoles;
+namespace Ecommerce.Application.Features.Auths.Queries.Roles.GetRoles;
 
 public class GetRolesQuery : IRequest<List<string>>
 {

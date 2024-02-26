@@ -5,17 +5,16 @@ using Ecommerce.Application;
 using Ecommerce.Application.Contracts.Infrastructure;
 using Ecommerce.Application.Features.Products.Queries.GetProductList;
 using Ecommerce.Domain;
-using Ecommerce.Infrastructure;
 using Ecommerce.Infrastructure.ImageCloudinary;
 using Ecommerce.Infrastructure.Persistence;
 using MediatR;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.Extensions.Internal;
 using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,12 +22,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddApplicationServices(builder.Configuration);
 
-builder.Services.AddDbContext<EcommerceDbContext>(options => 
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"),
-        b => b.MigrationsAssembly(typeof(EcommerceDbContext).Assembly.FullName)));
+builder.Services.AddDbContext<EcommerceDbContext>(
+    options => options.UseSqlServer(builder.Configuration.GetConnectionString("ConnectionString"), 
+    b => b.MigrationsAssembly(typeof(EcommerceDbContext).Assembly.FullName)));
 
 builder.Services.AddMediatR(typeof(GetProductListQueryHandler).Assembly);
-
 builder.Services.AddScoped<IManageImageService, ManageImageService>();
 
 builder.Services.AddControllers(opt =>
@@ -49,24 +47,25 @@ identityBuilder.AddSignInManager<SignInManager<Usuario>>();
 builder.Services.TryAddSingleton<ISystemClock, SystemClock>();
 
 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JwtSettings:Key"]!));
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-.AddJwtBearer(opt =>
-{
-    opt.TokenValidationParameters = new TokenValidationParameters
+    .AddJwtBearer(opt =>
     {
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = key,
-        ValidateAudience = false,
-        ValidateIssuer = false
-    };
-});
+        opt.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuerSigningKey = true,
+            IssuerSigningKey = key,
+            ValidateAudience = false,
+            ValidateIssuer = false
+        };
+    });
 
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("CorsPolicy", builder => builder
-        .AllowAnyOrigin()
-        .AllowAnyMethod()
-        .AllowAnyHeader());
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 });
 
 builder.Services.AddEndpointsApiExplorer();
@@ -79,8 +78,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-//app.UseHttpsRedirection();
 
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseAuthentication();

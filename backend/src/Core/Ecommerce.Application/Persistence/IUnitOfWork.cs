@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Application.Persistence;
+namespace Ecommerce.Application.Persistence;
 
 public interface IUnitOfWork : IDisposable
 {

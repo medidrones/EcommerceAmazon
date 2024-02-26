@@ -1,4 +1,4 @@
-﻿namespace Ecommerce.Application.Features.Orders.Vms;
+namespace Ecommerce.Application.Features.Orders.Vms;
 
 public class OrderItemVm
 {
@@ -7,6 +7,6 @@ public class OrderItemVm
     public int Cantidad { get; set; }
     public int OrderId { get; set; }
     public int ProductItemId { get; set; }
-    public string? ProductNombre { get; set; }
-    public string? ImageUrl { get; set; }
+    public string? ProductNombre{ get; set; }
+    public string? ImagenUrl {get;set;}  
 }

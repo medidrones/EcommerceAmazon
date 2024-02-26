@@ -1,4 +1,4 @@
-﻿using Ecommerce.Application.Contracts.Infrastructure;
+using Ecommerce.Application.Contracts.Infrastructure;
 using Ecommerce.Application.Models.Email;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -11,13 +11,13 @@ public class EmailService : IEmailService
 {
     public EmailSettings _emailSettings { get; }
     public ILogger<EmailService> _logger { get; }
-    
+
     public EmailService(IOptions<EmailSettings> emailSettings, ILogger<EmailService> logger)
     {
         _emailSettings = emailSettings.Value;
         _logger = logger;
     }
-    
+
     public async Task<bool> SendEmail(EmailMessage email, string token)
     {
         try
@@ -31,13 +31,13 @@ public class EmailService : IEmailService
             var htmlContent = $"{email.Body} {_emailSettings.BaseUrlClient}/password/reset/{token}";
             var msg = MailHelper.CreateSingleEmail(from, to, subject, plainTextContent, htmlContent);
             var response = await client.SendEmailAsync(msg);
-            
+
             return response.IsSuccessStatusCode;
         }
         catch (Exception)
         {
-            _logger.LogError("El email no pudo ser enviado, existen errores");
-            
+            _logger.LogError("El email no pudo enviarse, existen errores");
+
             return false;
         }
     }

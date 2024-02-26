@@ -1,27 +1,26 @@
-﻿using Ecommerce.Application.Contracts.Identity;
-using Ecommerce.Application.Features.Addresses.Vms;
 using Ecommerce.Application.Features.Auths.Users.Vms;
 using Ecommerce.Domain;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 
-namespace Ecommerce.Application.Features.Auths.Users.Queries.GetUserByUserName;
+namespace Ecommerce.Application.Features.Auths.Users.Queries.GetUserByUsername;
 
-public class GetUserByUserNameQueryHandler : IRequestHandler<GetUserByUserNameQuery, AuthResponse>
+public class GetUserByUsernameQueryHandler : IRequestHandler<GetUserByUsernameQuery, AuthResponse>
 {
     private readonly UserManager<Usuario> _userManager;
 
-    public GetUserByUserNameQueryHandler(UserManager<Usuario> userManager)
+    public GetUserByUsernameQueryHandler(UserManager<Usuario> userManager)
     {
         _userManager = userManager;
     }
 
-    public async Task<AuthResponse> Handle(GetUserByUserNameQuery request, CancellationToken cancellationToken)
+    public async Task<AuthResponse> Handle(GetUserByUsernameQuery request, CancellationToken cancellationToken)
     {
         var user = await _userManager.FindByNameAsync(request.Username!);
+        
         if (user is null)
         {
-            throw new Exception($"El usuario no existe.");
+            throw new Exception($"El usuario no existe");
         }
 
         return new AuthResponse
@@ -32,7 +31,7 @@ public class GetUserByUserNameQueryHandler : IRequestHandler<GetUserByUserNameQu
             Telefono = user.Telefono,
             Email = user.Email,
             Username = user.UserName,
-            Avatar = user.AvatarUrl,            
+            Avatar = user.AvatarUrl,
             Roles = await _userManager.GetRolesAsync(user)
         };
     }

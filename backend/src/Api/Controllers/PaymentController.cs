@@ -1,10 +1,10 @@
-﻿using Ecommerce.Application.Features.Orders.Vms;
+using System.Net;
+using Ecommerce.Application.Features.Orders.Vms;
 using Ecommerce.Application.Features.Payments.Commands.CreatePayment;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
 
-namespace Ecommerce.Api.Controllers;
+namespace Ecommerce.Api;
 
 [ApiController]
 [Route("api/v1/[controller]")]

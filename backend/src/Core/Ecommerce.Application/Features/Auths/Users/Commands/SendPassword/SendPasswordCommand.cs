@@ -1,4 +1,4 @@
-﻿using MediatR;
+using MediatR;
 
 namespace Ecommerce.Application.Features.Auths.Users.Commands.SendPassword;
 

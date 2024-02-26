@@ -1,13 +1,13 @@
-﻿using Ecommerce.Application.Features.Auths.Users.Vms;
+using Ecommerce.Application.Features.Auths.Users.Vms;
 using MediatR;
 
-namespace Ecommerce.Application.Features.Auths.Users.Queries.GetUserByUserName;
+namespace Ecommerce.Application.Features.Auths.Users.Queries.GetUserByUsername;
 
-public class GetUserByUserNameQuery : IRequest<AuthResponse>
+public class GetUserByUsernameQuery : IRequest<AuthResponse>
 {
     public string? Username { get; set; }
 
-    public GetUserByUserNameQuery(string? username)
+    public GetUserByUsernameQuery(string username)
     {
         Username = username ?? throw new ArgumentNullException(nameof(Username));
     }

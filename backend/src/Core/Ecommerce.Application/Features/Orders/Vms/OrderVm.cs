@@ -1,4 +1,4 @@
-﻿using Ecommerce.Application.Features.Addresses.Vms;
+using Ecommerce.Application.Features.Addresses.Vms;
 using Ecommerce.Application.Models.Order;
 using Ecommerce.Domain;
 
@@ -8,7 +8,7 @@ public class OrderVm
 {
     public int Id { get; set; }
     public AddressVm? OrderAddress { get; set; }
-    public List<OrderItemVm> OrderItems { get; set; }
+    public List<OrderItemVm>? OrderItems { get; set; }
     public decimal Subtotal { get; set; }
     public decimal Impuesto { get; set; }
     public decimal Total { get; set; }
@@ -20,33 +20,40 @@ public class OrderVm
     public string? CompradorUsername { get; set; }
     public string? CompradorNombre { get; set; }
 
-    public int Cantidad 
+    public int Cantidad
     {
         get { return OrderItems!.Sum(x => x.Cantidad); }
-        set { } 
+        set { }
     }
 
-    public string StatusLabel
+    public string StastusLabel
     {
-        get 
+        get
         {
-            switch(Status)
+            switch (Status)
             {
-                case OrderStatus.Completed: 
-                    { return OrderStatusLabel.COMPLETED; }
+                case OrderStatus.Completed:
+                    {
+                        return OrderStatusLabel.COMPLETED;
+                    }
 
                 case OrderStatus.Pending:
-                    { return OrderStatusLabel.PENDING; }
+                    {
+                        return OrderStatusLabel.PENDING;
+                    }
 
                 case OrderStatus.Enviado:
-                    { return OrderStatusLabel.ENVIADO; }
+                    {
+                        return OrderStatusLabel.ENVIADO;
+                    }
 
                 case OrderStatus.Error:
-                    { return OrderStatusLabel.ERROR; }
+                    {
+                        return OrderStatusLabel.ERROR;
+                    }
 
-                default:
-                    return OrderStatusLabel.ERROR;
+                default: return OrderStatusLabel.ERROR;
             }
-        }       
+        }
     }
 }

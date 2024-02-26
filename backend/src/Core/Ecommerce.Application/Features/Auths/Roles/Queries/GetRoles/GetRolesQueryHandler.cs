@@ -1,10 +1,10 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
-namespace Ecommerce.Application.Features.Auths.Roles.Queries.GetRoles;
+namespace Ecommerce.Application.Features.Auths.Queries.Roles.GetRoles;
 
-public class GetRolesQueryHandler : IRequestHandler<GetRolesQuery, List<String>>
+public class GetRolesQueryHandler : IRequestHandler<GetRolesQuery, List<string>>
 {
     private readonly RoleManager<IdentityRole> _roleManager;
 

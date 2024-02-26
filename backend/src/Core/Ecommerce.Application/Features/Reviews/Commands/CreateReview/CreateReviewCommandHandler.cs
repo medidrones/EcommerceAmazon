@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecommerce.Application.Features.Reviews.Queries.Vms;
 using Ecommerce.Application.Persistence;
 using Ecommerce.Domain;
@@ -27,13 +27,14 @@ public class CreateReviewCommandHandler : IRequestHandler<CreateReviewCommand, R
             ProductId = request.ProductId
         };
 
-        _unitOfWork.Repository<Review>().AddEntity(reviewEntity);
-        var resultado = await _unitOfWork.Complete();
+         _unitOfWork.Repository<Review>().AddEntity(reviewEntity);
 
-        if (resultado <= 0) 
-        {
-            throw new Exception("No se pudo guardar el comentario.");
-        }
+         var resultado = await _unitOfWork.Complete();
+
+         if(resultado <=0 )
+         {
+            throw new Exception("No se pudo guardar el comentario");
+         }
 
         return _mapper.Map<ReviewVm>(reviewEntity);
     }

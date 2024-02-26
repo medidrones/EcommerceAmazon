@@ -1,8 +1,7 @@
-﻿using System.Collections;
+using System.Collections;
 using Ecommerce.Application.Persistence;
-using Ecommerce.Infrastructure.Persistence;
 
-namespace Ecommerce.Infrastructure.Repositories;
+namespace Ecommerce.Infrastructure.Persistence.Repositories;
 
 public class UnitOfWork : IUnitOfWork
 {
@@ -13,14 +12,14 @@ public class UnitOfWork : IUnitOfWork
     {
         _context = context;
     }
-    
+
     public async Task<int> Complete()
     {
-        try 
+        try
         {
             return await _context.SaveChangesAsync();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             throw new Exception("Error en transacion", e);
         }
@@ -34,7 +33,7 @@ public class UnitOfWork : IUnitOfWork
     public IAsyncRepository<TEntity> Repository<TEntity>() where TEntity : class
     {
         if (_repositories is null)
-        { 
+        {
             _repositories = new Hashtable();
         }
 
@@ -44,10 +43,9 @@ public class UnitOfWork : IUnitOfWork
         {
             var repositoryType = typeof(RepositoryBase<>);
             var repositoryInstance = Activator.CreateInstance(repositoryType.MakeGenericType(typeof(TEntity)), _context);
-            
             _repositories.Add(type, repositoryInstance);
         }
-        
+
         return (IAsyncRepository<TEntity>)_repositories[type]!;
     }
 }

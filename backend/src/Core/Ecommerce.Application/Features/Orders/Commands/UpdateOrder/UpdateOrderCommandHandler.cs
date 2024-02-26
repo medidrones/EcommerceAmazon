@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecommerce.Application.Features.Orders.Vms;
 using Ecommerce.Application.Persistence;
 using Ecommerce.Domain;
@@ -26,9 +26,9 @@ public class UpdateOrderCommandHandler : IRequestHandler<UpdateOrderCommand, Ord
 
         var resultado = await _unitOfWork.Complete();
 
-        if (resultado <= 0)
+        if(resultado <= 0)
         {
-            throw new Exception("No se pudo actualizar el status de la orden de compra.");
+            throw new Exception("No se pudo actualizar el status de la orden de compra");
         }
 
         return _mapper.Map<OrderVm>(order);

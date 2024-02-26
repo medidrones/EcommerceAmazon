@@ -1,4 +1,4 @@
-﻿using System.Linq.Expressions;
+using System.Linq.Expressions;
 using AutoMapper;
 using Ecommerce.Application.Features.Products.Queries.Vms;
 using Ecommerce.Application.Persistence;
@@ -24,14 +24,9 @@ public class GetProductListQueryHandler : IRequestHandler<GetProductListQuery, I
         includes.Add(p => p.Images!);
         includes.Add(p => p.Reviews!);
 
-        var products = await _unitOfWork.Repository<Product>().GetAsync(
-            null, 
-            x => x.OrderBy(y => y.Nombre),
-            includes,
-            true);
-        
+        var products = await _unitOfWork.Repository<Product>().GetAsync(null, x => x.OrderBy(y => y.Nombre), includes, true);
         var productsVm = _mapper.Map<IReadOnlyList<ProductVm>>(products);
-        
+
         return productsVm;
     }
 }

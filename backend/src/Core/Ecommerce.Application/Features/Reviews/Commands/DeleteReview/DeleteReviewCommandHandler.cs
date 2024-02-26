@@ -1,4 +1,4 @@
-﻿using Ecommerce.Application.Exceptions;
+using Ecommerce.Application.Exceptions;
 using Ecommerce.Application.Persistence;
 using Ecommerce.Domain;
 using MediatR;
@@ -17,8 +17,8 @@ public class DeleteReviewCommandHandler : IRequestHandler<DeleteReviewCommand>
     public async Task<Unit> Handle(DeleteReviewCommand request, CancellationToken cancellationToken)
     {
         var reviewToDelete = await _unitOfWork.Repository<Review>().GetByIdAsync(request.ReviewId);
-        
-        if (reviewToDelete is null)
+
+        if(reviewToDelete is null)
         {
             throw new NotFoundException(nameof(Review), request.ReviewId);
         }

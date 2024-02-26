@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using Ecommerce.Application.Features.Products.Queries.Vms;
 using Ecommerce.Application.Features.Shared.Queries;
 using Ecommerce.Application.Persistence;
@@ -36,16 +36,16 @@ public class PaginationProductsQueryHandler : IRequestHandler<PaginationProducts
 
         var spec = new ProductSpecification(productSpecificationParams);
         var products = await _unitOfWork.Repository<Product>().GetAllWithSpec(spec);
-        
+
         var specCount = new ProductForCountingSpecification(productSpecificationParams);
         var totalProducts = await _unitOfWork.Repository<Product>().CountAsync(specCount);
-        
+
         var rounded = Math.Ceiling(Convert.ToDecimal(totalProducts) / Convert.ToDecimal(request.PageSize));
         var totalPages = Convert.ToInt32(rounded);
-        
+
         var data = _mapper.Map<IReadOnlyList<ProductVm>>(products);
         var productsByPage = products.Count();
-        
+
         var pagination = new PaginationVm<ProductVm>
         {
             Count = totalProducts,
