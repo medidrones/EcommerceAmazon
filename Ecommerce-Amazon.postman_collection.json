@@ -1,0 +1,1492 @@
+{
+	"info": {
+		"_postman_id": "c85f75cb-6cff-4558-b1ad-2f13b9a8cf72",
+		"name": "Ecommerce-Amazon",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23113598"
+	},
+	"item": [
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "List de Productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/product/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination Products",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/Product/pagination",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Product",
+								"pagination"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination Products Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg4MjUzMTEsImV4cCI6MTcxNTA4MzkxMSwiaWF0IjoxNzA4ODI1MzExfQ.zmt3RuCqziYxFmmpvU-8rwLVttD-Hir3V7xhelDm7qPFF3d_C5nlLEjCtSJfNFOigCTFnWbdlSlvVaAqulfmyA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/Product/paginationAdmin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Product",
+								"paginationAdmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination Products - PageSize",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/Product/pagination?pageSize=10",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Product",
+								"pagination"
+							],
+							"query": [
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination Products - Search",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/Product/pagination?search=samsung",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Product",
+								"pagination"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "samsung"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Obter Product por Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/product/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"product",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create of new Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg1NTgwMjEsImV4cCI6MTcxNDgxNjYyMSwiaWF0IjoxNzA4NTU4MDIxfQ.D7l_YsRZcnt4xxEB0oo_tdIKG2qVp6YlK2ATVcipAh77NaV9words3gzNrQ1HYXFsX895RME9bmFyhh4VHNe0A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nombre",
+									"value": "Samsung Galaxy",
+									"type": "text"
+								},
+								{
+									"key": "Precio",
+									"value": "5264",
+									"type": "text"
+								},
+								{
+									"key": "Descripcion",
+									"value": "Es un producto de alta gama",
+									"type": "text"
+								},
+								{
+									"key": "Vendedor",
+									"value": "Lorenzo Lamas",
+									"type": "text"
+								},
+								{
+									"key": "Stock",
+									"value": "5000",
+									"type": "text"
+								},
+								{
+									"key": "CategoryId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "Fotos",
+									"type": "file",
+									"src": [
+										"postman-cloud:///1eed10f9-bdd4-4bb0-831c-0b0e91893844",
+										"postman-cloud:///1eed10f9-bd90-45f0-9f79-08f4fa2f34ee",
+										"postman-cloud:///1eed10f9-bda1-4760-a072-cb4af8db81a9"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Product/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Product",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update of Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg1NjAzMTgsImV4cCI6MTcxNDgxODkxOCwiaWF0IjoxNzA4NTYwMzE4fQ.89Ew6rhba2x-5vyO2RpLh0jiP2aSyygXfwwtJjHiSW0LRStMfqh6FnS9pOq8yNTf4AWUxq4zn85pIh6zXnEvkQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Id",
+									"value": "7",
+									"type": "text"
+								},
+								{
+									"key": "Nombre",
+									"value": "Samsung Phone Max",
+									"type": "text"
+								},
+								{
+									"key": "Precio",
+									"value": "5264",
+									"type": "text"
+								},
+								{
+									"key": "Descripcion",
+									"value": "Es un producto de alta gama",
+									"type": "text"
+								},
+								{
+									"key": "Vendedor",
+									"value": "Lorenzo Lamas",
+									"type": "text"
+								},
+								{
+									"key": "Stock",
+									"value": "5000",
+									"type": "text"
+								},
+								{
+									"key": "CategoryId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "Fotos",
+									"type": "file",
+									"src": [
+										"postman-cloud:///1eed10f9-bdd4-4bb0-831c-0b0e91893844",
+										"postman-cloud:///1eed10f9-bd90-45f0-9f79-08f4fa2f34ee",
+										"postman-cloud:///1eed10f9-bda1-4760-a072-cb4af8db81a9"
+									]
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Product/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Product",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete of Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg1NjE1OTksImV4cCI6MTcxNDgyMDE5OSwiaWF0IjoxNzA4NTYxNTk5fQ.CeI4OuztK-1WU5kwKHcYplzUY2LuHhyHfVTS2DB5Ic6ZnHY0DFtsB4jP9xZY2wMlv4Xvmmq4zd1Fya_sCAX1Vw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Product/status/7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Product",
+								"status",
+								"7"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Security",
+			"item": [
+				{
+					"name": "Login de usuarios",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg0NzI3MTIsImV4cCI6MTcxNDczMTMxMiwiaWF0IjoxNzA4NDcyNzEyfQ.m08x2xxUJTaoBmnZCub7MS6v3rIvRZcaKmvSxUc4yaSQAiMxSIM8QguPURirCDIvxwPKUccdXokJKKPAu-eK1A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"medicode.developer@gmail.com\",\r\n  \"password\": \"PasswordMedina123$\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Usuario/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Usuario",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nombre",
+									"value": "Juan",
+									"type": "text"
+								},
+								{
+									"key": "Apellido",
+									"value": "Ramirez",
+									"type": "text"
+								},
+								{
+									"key": "Email",
+									"value": "juan.ramirez@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "Telefono",
+									"value": "78454541",
+									"type": "text"
+								},
+								{
+									"key": "Password",
+									"value": "Password123569&",
+									"type": "text"
+								},
+								{
+									"key": "Username",
+									"value": "juan.ramirez",
+									"type": "text"
+								},
+								{
+									"key": "Foto",
+									"type": "file",
+									"src": "postman-cloud:///1eece828-308d-4ad0-ae71-0f8910f0ee44"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Usuario/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Usuario",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send email to reset password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"medicode.developer@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Usuario/forgotPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Usuario",
+								"forgotPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset password by token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"medicode.developer@gmail.com\",\r\n    \"password\": \"PasswordMedicode2517$\",\r\n    \"confirmPassword\": \"PasswordMedicode2517&\",\r\n    \"token\": \"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Usuario/resetPassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Usuario",
+								"resetPassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reset password in perfil",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJqdWFuLnBlcmV6IiwidXNlcklkIjoiNmE4OWYyMzktMjkwNC00YWYxLWIzMzktYjdhYTVlYWY5ZTFkIiwiZW1haWwiOiJqdWFuLnBlcmV6QGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwibmJmIjoxNzA4Mjc4NjMzLCJleHAiOjE3MTQ1MzcyMzMsImlhdCI6MTcwODI3ODYzM30.JMume0YSizIkQezFC2glkbP3k-63xBgipSGNNzFkSDgNsU_FV9hMmnQmCDX6OWhLY_Ph5KaR_yypqKLoo2iDqQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"newPassword\": \"PasswordJuanPerez2517$\",\r\n    \"oldPassword\": \"PasswordJuanPerez123$\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Usuario/updatePassword",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Usuario",
+								"updatePassword"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJqdWFuLnBlcmV6IiwidXNlcklkIjoiNmE4OWYyMzktMjkwNC00YWYxLWIzMzktYjdhYTVlYWY5ZTFkIiwiZW1haWwiOiJqdWFuLnBlcmV6QGdtYWlsLmNvbSIsInJvbGUiOiJVU0VSIiwibmJmIjoxNzA4MjgwNTY3LCJleHAiOjE3MTQ1MzkxNjcsImlhdCI6MTcwODI4MDU2N30.r2Ft2tMk_gWeKRCjXUsk4xZThVqjH6W47SnuQ-bDCr-VIF6brF32u6sAZsyvnAh9wGMQaIxSj-xAKTGuWpiMJA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "Nombre",
+									"value": "Roberto",
+									"type": "text"
+								},
+								{
+									"key": "Apellido",
+									"value": "Velez",
+									"type": "text"
+								},
+								{
+									"key": "Email",
+									"value": "juan.perez@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "Telefono",
+									"value": "8546541144",
+									"type": "text"
+								},
+								{
+									"key": "Foto",
+									"type": "file",
+									"src": "postman-cloud:///1eece828-308d-4ad0-ae71-0f8910f0ee44"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Usuario/update",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Usuario",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upadate user by admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg0Njk1OTEsImV4cCI6MTcxNDcyODE5MSwiaWF0IjoxNzA4NDY5NTkxfQ.2WQkoZ612yXMLCh2y_xNu9_Ay1BcCkjpkGNRiwmzmUZxzMIHu_Ckkou7wOgAFLhZ66VUTVGaxzPbvx046cWOlQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"6a89f239-2904-4af1-b339-b7aa5eaf9e1d\",\r\n    \"nombre\": \"Maria\",\r\n    \"apellido\": \"Los Angeles\",\r\n    \"telefono\": \"55556666\",\r\n    \"role\": \"USER\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Usuario/updateAdminUser",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Usuario",
+								"updateAdminUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upadate status user by admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg0NzA2NjAsImV4cCI6MTcxNDcyOTI2MCwiaWF0IjoxNzA4NDcwNjYwfQ.UkhP6_beBP_vZFHi9loRgsTMv2F1m9OgHmuy4XeQ_zry1e1ESDLgsT-z6hX35DTZdpgMhu69Fh4ApC_pnDP1ew",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"6a89f239-2904-4af1-b339-b7aa5eaf9e1d\"    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Usuario/updateAdminStatusUser",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Usuario",
+								"updateAdminStatusUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg0NzE2NjUsImV4cCI6MTcxNDczMDI2NSwiaWF0IjoxNzA4NDcxNjY1fQ.zPTDldxXc9ZPxt7fc4PHQ5W5_oCTm5SlG2G_s0YbA35y90lHX9NDGhPi9qIyMlOBZl0hQYc9-939VxlomoQxmA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Usuario/faf7b9a3-ceaf-480e-85da-679311a2d9d7",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Usuario",
+								"faf7b9a3-ceaf-480e-85da-679311a2d9d7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users pagination",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg0NzE2NjUsImV4cCI6MTcxNDczMDI2NSwiaWF0IjoxNzA4NDcxNjY1fQ.zPTDldxXc9ZPxt7fc4PHQ5W5_oCTm5SlG2G_s0YbA35y90lHX9NDGhPi9qIyMlOBZl0hQYc9-939VxlomoQxmA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Usuario/paginationAdmin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Usuario",
+								"paginationAdmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Users pagination search",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg0NzE2NjUsImV4cCI6MTcxNDczMDI2NSwiaWF0IjoxNzA4NDcxNjY1fQ.zPTDldxXc9ZPxt7fc4PHQ5W5_oCTm5SlG2G_s0YbA35y90lHX9NDGhPi9qIyMlOBZl0hQYc9-939VxlomoQxmA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Usuario/paginationAdmin?search=maria",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Usuario",
+								"paginationAdmin"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "maria"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by username",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg0NzE2NjUsImV4cCI6MTcxNDczMDI2NSwiaWF0IjoxNzA4NDcxNjY1fQ.zPTDldxXc9ZPxt7fc4PHQ5W5_oCTm5SlG2G_s0YbA35y90lHX9NDGhPi9qIyMlOBZl0hQYc9-939VxlomoQxmA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Usuario/Username/jorge.medina",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Usuario",
+								"Username",
+								"jorge.medina"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get current user",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJqb3JnZS5tZWRpbmEiLCJ1c2VySWQiOiI5YTg2NGM5Yi1lNjE0LTQxY2EtODBkMC03ZjgxZmVlNGU2MDMiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg5MTQ1MTUsImV4cCI6MTcxNTE3MzExNSwiaWF0IjoxNzA4OTE0NTE1fQ._cijvqBIYCj2IlDG3lDm38p7XfI_S1lVegp_wJLECgXKMDGWdHUeZMTU_fz-Mw9DUQly69Eus35jwLU7ERzVZg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Usuario",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Usuario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get roles list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/Usuario/roles",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Usuario",
+								"roles"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Country",
+			"item": [
+				{
+					"name": "Get country list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/Country",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Country"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Get category list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/Category/list",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Category",
+								"list"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Review",
+			"item": [
+				{
+					"name": "Create a new review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg3ODI0NDksImV4cCI6MTcxNTA0MTA0OSwiaWF0IjoxNzA4NzgyNDQ5fQ.2n-RMSI-_X8H3MhZld8D7odS8RNvkrUoMHDb3LeaS3slCP5oUMDSOpI3NUISeulXQxBOIho-9qa1F4wCR4K27Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productId\": 4,\r\n    \"nombre\": \"Jorge Medina\",\r\n    \"rating\": 5,\r\n    \"comentario\": \"Es un producto barato y bueno\"    \r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Review",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Review"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete review",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg3ODI0NDksImV4cCI6MTcxNTA0MTA0OSwiaWF0IjoxNzA4NzgyNDQ5fQ.2n-RMSI-_X8H3MhZld8D7odS8RNvkrUoMHDb3LeaS3slCP5oUMDSOpI3NUISeulXQxBOIho-9qa1F4wCR4K27Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Review/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Review",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination review",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg3ODI0NDksImV4cCI6MTcxNTA0MTA0OSwiaWF0IjoxNzA4NzgyNDQ5fQ.2n-RMSI-_X8H3MhZld8D7odS8RNvkrUoMHDb3LeaS3slCP5oUMDSOpI3NUISeulXQxBOIho-9qa1F4wCR4K27Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Review/paginationReviews",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Review",
+								"paginationReviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination review - PageIndex",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg3ODI0NDksImV4cCI6MTcxNTA0MTA0OSwiaWF0IjoxNzA4NzgyNDQ5fQ.2n-RMSI-_X8H3MhZld8D7odS8RNvkrUoMHDb3LeaS3slCP5oUMDSOpI3NUISeulXQxBOIho-9qa1F4wCR4K27Q",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Review/paginationReviews?pageIndex =2",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Review",
+								"paginationReviews"
+							],
+							"query": [
+								{
+									"key": "pageIndex ",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Shopping Cart",
+			"item": [
+				{
+					"name": "Get shopping cart",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/ShoppingCart/00000000-0000-0000-0000-000000000000",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ShoppingCart",
+								"00000000-0000-0000-0000-000000000000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete shopping cart",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/api/v1/ShoppingCart/item/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ShoppingCart",
+								"item",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update shopping cart",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"shoppingCartItems\":[\r\n    {\r\n        \"cantidad\":1,\r\n        \"imagen\":\"https://firebasestorage.googleapis.com/v0/b/edificacion-app.appspot.com/o/laptop_4.jpg?alt=media&token=9d8382cc-4fb4-4b31-94af-e38d6a66dc6e\",\r\n        \"precio\":2900.99,\r\n        \"productId\":4,\r\n        \"producto\":\"Acer TravelMate\",\r\n        \"stock\":500\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/ShoppingCart/d2d977d8-b923-4744-85ed-2c6dd27aaa2c",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"ShoppingCart",
+								"d2d977d8-b923-4744-85ed-2c6dd27aaa2c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Create Address",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg3OTMzODgsImV4cCI6MTcxNTA1MTk4OCwiaWF0IjoxNzA4NzkzMzg4fQ.5kgAv4DgFdQJ8lzGlgByX-Kwzfx-IuHexpU6_LwkTR6Tcx5G0X5iUdFC_VbdkEv0vor3yAGFzrtAJ8LcAmIYBw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"direccion\": \"Av. Las Flores 531\",\r\n    \"ciudad\": \"Miami\",\r\n    \"departamento\": \"Florida\",\r\n    \"codigoPostal\": \"441241\",\r\n    \"pais\": \"US\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Order/address",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Order",
+								"address"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg4MTkxMjcsImV4cCI6MTcxNTA3NzcyNywiaWF0IjoxNzA4ODE5MTI3fQ.2pPuULyxYzsgrEZJ4xfAOUkDNzPixZDZkzLeg9yd9_C2-W0ElGGeDEk1Uy75e2Y1GRyuyqHOi5jo6jS616HU1w",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"shoppingCartId\": \"d2d977d8-b923-4744-85ed-2c6dd27aaa2c\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Order",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg4MjAyMDIsImV4cCI6MTcxNTA3ODgwMiwiaWF0IjoxNzA4ODIwMjAyfQ.Phi891K_D1A0s_Mz_Q998CuzF0f-Fer8wkpmkeZwiG-V-q7nUWbs__JkW4pA2lbgSbst3jmlRUQNL3rtY73xWw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderId\": 0,\r\n  \"status\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Order/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Order",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Pagination By Username",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg4MjQ4OTksImV4cCI6MTcxNTA4MzQ5OSwiaWF0IjoxNzA4ODI0ODk5fQ.olTR06hIK-qzkBpCJZXbRdGnNsvnnsHM79es28X6a9LjAxXZjEpRJ205Jr-bvN9er-0pVrz_Wdfab6L48AzFdQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Order/paginationByUsername",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Order",
+								"paginationByUsername"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Order Pagination By Admin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg4MjQ4OTksImV4cCI6MTcxNTA4MzQ5OSwiaWF0IjoxNzA4ODI0ODk5fQ.olTR06hIK-qzkBpCJZXbRdGnNsvnnsHM79es28X6a9LjAxXZjEpRJ205Jr-bvN9er-0pVrz_Wdfab6L48AzFdQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Order/paginationAdmin",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Order",
+								"paginationAdmin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJtZWRpY29kZS5kZXZlbG9wZXIiLCJ1c2VySWQiOiJiOGIwMDQzNy05NmU1LTQzZmUtODlkMy03Mzk2ZGE1MjIyYTUiLCJlbWFpbCI6Im1lZGljb2RlLmRldmVsb3BlckBnbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJuYmYiOjE3MDg4MjAyMDIsImV4cCI6MTcxNTA3ODgwMiwiaWF0IjoxNzA4ODIwMjAyfQ.Phi891K_D1A0s_Mz_Q998CuzF0f-Fer8wkpmkeZwiG-V-q7nUWbs__JkW4pA2lbgSbst3jmlRUQNL3rtY73xWw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"orderId\": 0,\r\n  \"status\": 0\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/api/v1/Order",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"Order"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "http://localhost:5000",
+			"type": "string"
+		}
+	]
+}
